@@ -12,7 +12,7 @@ export default function BlogList() {
       data={state}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
-        <Link href="/show" asChild>
+        <Link href={{ pathname: "/show", params: { id: item.id } }} asChild>
           <TouchableOpacity>
             <BlogCard {...item} />
           </TouchableOpacity>
