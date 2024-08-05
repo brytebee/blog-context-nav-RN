@@ -1,5 +1,6 @@
 // BlogCard.tsx
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../context/BlogContext2";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
@@ -11,6 +12,12 @@ interface BlogCardProps {
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ name, age, role, id }) => {
+  const { dispatch } = useContext(Context);
+
+  const handleDel = (id: number) => {
+    return dispatch({ type: "del_blog", payload: id });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.userInfo}>
@@ -20,7 +27,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ name, age, role, id }) => {
           {role} - {id}
         </Text>
       </View>
-      <TouchableOpacity onPress={() => console.log(id)}>
+      <TouchableOpacity onPress={() => handleDel(id)}>
         <Feather style={styles.icon} name="trash" />
       </TouchableOpacity>
     </View>

@@ -50,6 +50,8 @@ const blogReducer = (
   action: { type: string; payload?: any }
 ): BlogState => {
   switch (action.type) {
+    case "del_blog":
+      return state.filter((blog) => blog.id !== action.payload);
     case "add_blog":
       return [
         ...state,
@@ -71,6 +73,16 @@ const addBlog = (dispatch: React.Dispatch<any>) => {
   };
 };
 
-const { Context, Provider } = createDataContext(blogReducer, { addBlog }, []);
+const delBlog = (dispatch: React.Dispatch<any>) => {
+  return (id: number) => {
+    dispatch({ type: "del_blog", payload: id });
+  };
+};
+
+const { Context, Provider } = createDataContext(
+  blogReducer,
+  { addBlog, delBlog },
+  []
+);
 
 export { Context, Provider };
