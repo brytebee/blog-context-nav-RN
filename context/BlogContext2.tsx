@@ -1,6 +1,6 @@
 import createDataContext from "./createDataContext";
 
-type BlogPost = {
+export type BlogPost = {
   name: string;
   age: number;
   role: string;
