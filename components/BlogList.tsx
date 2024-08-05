@@ -1,8 +1,8 @@
-// BlogList.tsx
 import React, { useContext } from "react";
-import { FlatList } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 import { Context } from "@/context/BlogContext2";
 import BlogCard from "./BlogCard";
+import { Link } from "expo-router";
 
 export default function BlogList() {
   const { state } = useContext(Context);
@@ -11,7 +11,13 @@ export default function BlogList() {
     <FlatList
       data={state}
       keyExtractor={(item) => item.id.toString()}
-      renderItem={({ item }) => <BlogCard {...item} />}
+      renderItem={({ item }) => (
+        <Link href="/show" asChild>
+          <TouchableOpacity>
+            <BlogCard {...item} />
+          </TouchableOpacity>
+        </Link>
+      )}
     />
   );
 }
