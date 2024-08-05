@@ -1,5 +1,6 @@
 import BlogList from "@/components/BlogList";
 import { Context } from "@/context/BlogContext2";
+import { Feather } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import { useContext } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
@@ -26,6 +27,12 @@ export default function Index() {
     </>
   );
 }
+
+// Index.navigationOptions = () => {
+//   return {
+//     headerRight: <Feather name="plus" size={30} />,
+//   };
+// };
 
 const styles = StyleSheet.create({
   top: {
