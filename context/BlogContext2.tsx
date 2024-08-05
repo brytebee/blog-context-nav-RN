@@ -4,6 +4,7 @@ type BlogPost = {
   name: string;
   age: number;
   role: string;
+  id: number;
 };
 
 type BlogState = BlogPost[];
@@ -56,6 +57,7 @@ const blogReducer = (
           name: randString(fakeNames),
           age: randNum(30, 60),
           role: randString(roles),
+          id: randNum(1, 9999),
         },
       ];
     default:

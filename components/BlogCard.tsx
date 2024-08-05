@@ -1,26 +1,31 @@
-import { StyleSheet, Text, View } from "react-native";
+// BlogCard.tsx
+import React from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
-interface Props {
-  props: {
-    name: string;
-    age: number;
-    role: string;
-  };
+interface BlogCardProps {
+  name: string;
+  age: number;
+  role: string;
+  id: number;
 }
 
-export default function BlogCard({ props: { name, age, role } }: Props) {
+const BlogCard: React.FC<BlogCardProps> = ({ name, age, role, id }) => {
   return (
     <View style={styles.container}>
       <View style={styles.userInfo}>
         <Text style={styles.text}>{name}</Text>
         <Text style={styles.text}>{age}</Text>
-        <Text style={styles.text}>{role}</Text>
+        <Text style={styles.text}>
+          {role} - {id}
+        </Text>
       </View>
-      <Feather style={styles.icon} name="trash" />
+      <TouchableOpacity onPress={() => console.log(id)}>
+        <Feather style={styles.icon} name="trash" />
+      </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -44,3 +49,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
 });
+
+export default BlogCard;
