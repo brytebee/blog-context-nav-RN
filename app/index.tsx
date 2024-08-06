@@ -1,17 +1,8 @@
 import BlogList from "@/components/BlogList";
-import { Context } from "@/context/BlogContext2";
-import { Feather } from "@expo/vector-icons";
 import { Link } from "expo-router";
-import { useContext } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
-  const { dispatch } = useContext(Context);
-
-  const handleAddBlog = () => {
-    dispatch({ type: "add_blog" });
-  };
-
   return (
     <>
       <View style={styles.top}>
@@ -22,17 +13,13 @@ export default function Index() {
           Go to About
         </Link>
       </View>
-      <Button title="Create User" onPress={handleAddBlog} />
+      <Link style={styles.topLink} href="/create">
+        Create User
+      </Link>
       <BlogList />
     </>
   );
 }
-
-// Index.navigationOptions = () => {
-//   return {
-//     headerRight: <Feather name="plus" size={30} />,
-//   };
-// };
 
 const styles = StyleSheet.create({
   top: {

@@ -36,7 +36,7 @@ const fakeNames = [
   "Latti",
 ];
 
-const randNum = (min: number, max: number) => {
+export const randNum = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
@@ -53,15 +53,7 @@ const blogReducer = (
     case "del_blog":
       return state.filter((blog) => blog.id !== action.payload);
     case "add_blog":
-      return [
-        ...state,
-        {
-          name: randString(fakeNames),
-          age: randNum(30, 60),
-          role: randString(roles),
-          id: randNum(1, 9999),
-        },
-      ];
+      return [...state, action.payload];
     default:
       return state;
   }
