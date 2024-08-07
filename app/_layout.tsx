@@ -3,8 +3,8 @@ import { EvilIcons, Feather } from "@expo/vector-icons";
 import { Link, Stack } from "expo-router";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
-const rightHead = (dir: string) => {
-  switch (dir) {
+export const rightHead = (screen: string, id: string = "-1") => {
+  switch (screen) {
     case "index":
       return (
         <Link href="/create" asChild>
@@ -15,7 +15,7 @@ const rightHead = (dir: string) => {
       );
     case "show":
       return (
-        <Link href="/edit" asChild>
+        <Link href={{ pathname: "/edit", params: { id: +id } }} asChild>
           <TouchableOpacity>
             <EvilIcons name="pencil" style={styles.icon} />
           </TouchableOpacity>
@@ -42,7 +42,7 @@ export default function RootLayout() {
           name="show"
           options={{
             title: "Update User",
-            headerRight: () => rightHead("show"),
+            // headerRight: () => rightHead("show"),
           }}
         />
       </Stack>

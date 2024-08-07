@@ -1,7 +1,8 @@
-import { BlogPost, Context } from "@/context/BlogContext2";
 import { useLocalSearchParams } from "expo-router";
 import { useContext } from "react";
 import { Text, View, StyleSheet } from "react-native";
+import { Context, BlogPost } from "@/context/BlogContext2";
+import { rightHead } from "./_layout";
 
 export default function Show() {
   const { state } = useContext(Context);
@@ -16,11 +17,14 @@ export default function Show() {
     );
   }
 
-  const { name, age, role } = blog;
+  const { id, name, age, role } = blog;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>User Details</Text>
+      <View style={styles.topSubContainer}>
+        <Text>{rightHead("show", id)}</Text>
+        <Text style={styles.title}>User Details</Text>
+      </View>
       <Text style={styles.label}>Name:</Text>
       <Text style={styles.value}>{name}</Text>
       <Text style={styles.label}>Age:</Text>
@@ -36,6 +40,10 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: "#fff",
+  },
+  topSubContainer: {
+    flexDirection: "row-reverse",
+    justifyContent: "space-between",
   },
   title: {
     fontSize: 24,

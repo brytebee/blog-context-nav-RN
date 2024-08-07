@@ -74,7 +74,10 @@ const delBlog = (dispatch: React.Dispatch<any>) => {
 const { Context, Provider } = createDataContext(
   blogReducer,
   { addBlog, delBlog },
-  []
+  [
+    { id: 423, name: "Samwel", age: 25, role: "Maester" },
+    { id: 872, name: "Jon Snow", age: 25, role: "Leader" },
+  ]
 );
 
 export { Context, Provider };
