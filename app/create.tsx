@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { Button, StyleSheet, Text, TextInput } from "react-native";
 
 export default function Create() {
-  const { dispatch, state } = useContext(Context);
+  const { dispatch } = useContext(Context);
   const [name, setName] = useState("");
   const [age, setAge] = useState<number>(0);
   const [role, setRole] = useState("");
@@ -13,7 +13,6 @@ export default function Create() {
       type: "add_blog",
       payload: { id: randNum(1, 999), name, age, role },
     });
-    console.log(state);
   };
 
   return (
