@@ -1,10 +1,11 @@
 import BlogForm from "@/components/BlogForm";
 import { BlogPost, Context } from "@/context/BlogContext2";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useContext } from "react";
 import { StyleSheet } from "react-native";
 
 export default function Edit() {
+  const router = useRouter();
   const { state, dispatch } = useContext(Context);
   const params = useLocalSearchParams();
   const { id } = params;
@@ -18,6 +19,7 @@ export default function Edit() {
     role: string
   ) => {
     dispatch({ type: "update_blog", payload: { id, name, age, role } });
+    router.navigate("/");
   };
 
   return (
