@@ -32,14 +32,6 @@ export default function BlogForm({ onSubmit, initValues }: any) {
   );
 }
 
-BlogForm.defaultProps = {
-  initValues: {
-    name: "",
-    age: 0,
-    role: "",
-  },
-};
-
 const styles = StyleSheet.create({
   label: {
     marginBottom: 5,
