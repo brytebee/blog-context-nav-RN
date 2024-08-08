@@ -38,10 +38,11 @@ export default function RootLayout() {
           }}
         />
         <Stack.Screen name="about" options={{ title: "All Users" }} />
+        <Stack.Screen name="edit" options={{ title: "Update User" }} />
         <Stack.Screen
           name="show"
           options={{
-            title: "Update User",
+            title: "User Details",
             // headerRight: () => rightHead("show"),
           }}
         />

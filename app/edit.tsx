@@ -1,17 +1,23 @@
+import BlogForm from "@/components/BlogForm";
+import { BlogPost, Context } from "@/context/BlogContext2";
 import { useLocalSearchParams } from "expo-router";
+import { useContext } from "react";
 import { Text, View, StyleSheet } from "react-native";
 
 export default function Edit() {
+  const { state } = useContext(Context);
   const params = useLocalSearchParams();
   const { id } = params;
+  const user = state.find((usr: BlogPost) => usr.id === +id);
+  const { name, role, age } = user;
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Edit User</Text>
-      <Text style={styles.label}>User ID:</Text>
-      <Text style={styles.value}>{id}</Text>
-      {/* Additional form fields and logic for editing user details can go here */}
-    </View>
+    <BlogForm
+      initValues={{ name, role, age }}
+      onSubmit={(name: string, role: string, age: number) =>
+        console.log(name, role, age)
+      }
+    />
   );
 }
 
