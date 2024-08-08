@@ -9,47 +9,19 @@ export type BlogPost = {
 
 type BlogState = BlogPost[];
 
-const roles = [
-  "Developer",
-  "Nurse",
-  "Engineer",
-  "Lawyer",
-  "Designer",
-  "Doctor",
-  "Teacher",
-  "Clergyman",
-  "Clerk",
-  "Civil Servant",
-];
-
-const fakeNames = [
-  "Joe",
-  "Dan",
-  "Ben",
-  "Juan",
-  "Shaun",
-  "Levi",
-  "Hussain",
-  "Helen",
-  "Matt",
-  "Bruce",
-  "Latti",
-];
-
 export const randNum = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-
-function randString<T>(array: T[]): T {
-  const randomIndex = Math.floor(Math.random() * array.length);
-  return array[randomIndex];
-}
 
 const blogReducer = (
   state: BlogState,
   action: { type: string; payload?: any }
 ): BlogState => {
   switch (action.type) {
+    case "update_blog":
+      return state.map((blog) => {
+        return blog.id === action.payload.id ? action.payload : blog;
+      });
     case "del_blog":
       return state.filter((blog) => blog.id !== action.payload);
     case "add_blog":
@@ -66,14 +38,20 @@ const addBlog = (dispatch: React.Dispatch<any>) => {
 };
 
 const delBlog = (dispatch: React.Dispatch<any>) => {
-  return (id: number) => {
-    dispatch({ type: "del_blog", payload: id });
+  return () => {
+    dispatch({ type: "del_blog" });
+  };
+};
+
+const editBlog = (dispatch: React.Dispatch<any>) => {
+  return () => {
+    dispatch({ type: "update_blog" });
   };
 };
 
 const { Context, Provider } = createDataContext(
   blogReducer,
-  { addBlog, delBlog },
+  { addBlog, delBlog, editBlog },
   [
     { id: 423, name: "Samwel", age: 25, role: "Maester" },
     { id: 872, name: "Jon Snow", age: 25, role: "Leader" },

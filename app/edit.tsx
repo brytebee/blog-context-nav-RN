@@ -2,44 +2,32 @@ import BlogForm from "@/components/BlogForm";
 import { BlogPost, Context } from "@/context/BlogContext2";
 import { useLocalSearchParams } from "expo-router";
 import { useContext } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 export default function Edit() {
-  const { state } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
   const params = useLocalSearchParams();
   const { id } = params;
   const user = state.find((usr: BlogPost) => usr.id === +id);
   const { name, role, age } = user;
 
+  const handleUpdate = (
+    id: number,
+    name: string,
+    age: number,
+    role: string
+  ) => {
+    dispatch({ type: "update_blog", payload: { id, name, age, role } });
+  };
+
   return (
     <BlogForm
       initValues={{ name, role, age }}
-      onSubmit={(name: string, role: string, age: number) =>
-        console.log(name, role, age)
+      onSubmit={(name: string, age: number, role: string) =>
+        handleUpdate(+id, name, age, role)
       }
     />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: "#fff",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
-  label: {
-    fontSize: 18,
-    fontWeight: "600",
-    marginTop: 10,
-  },
-  value: {
-    fontSize: 18,
-    marginTop: 5,
-    marginBottom: 15,
-  },
-});
+const styles = StyleSheet.create({});
